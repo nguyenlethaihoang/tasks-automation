@@ -2,29 +2,34 @@ write-Host "TASKS AUTOMATION" -ForegroundColor Yellow
 write-Host "|" -ForegroundColor Cyan
 write-Host "---1.Arrange desktop icons" -ForegroundColor Cyan
 
+# Declare location of desktop
+$Location_Desktop =  [Environment]::GetFolderPath("Desktop")
 # Set location to Desktop
-Set-Location -Path “C:\Users\hello\OneDrive\Desktop"  #Set-Location -Path “C:\Users\$ENV:UserName\" 
+Set-Location -Path "$Location_Desktop"
 
 # Make folders
+
 ## Create Documents folder 
 New-Item "./Documents" -ItemType Directory
-### Copy files to Documents folder
-Get-ChildItem -Path "C:\Users\hello\OneDrive\Desktop\*" -Include *.pdf,*.docx,*.txt -Recurse | Copy-Item -Destination "C:\Users\hello\OneDrive\Desktop\Documents" 
+
+## Copy files to Documents folder
+Get-ChildItem -Path "$Location_Desktop\*" -Include *.pdf,*.docx,*.txt -Recurse | Copy-Item -Destination "$Location_Desktop\Documents" | Out-Null
 ## Create Images folder
 New-Item "./Images" -ItemType Directory
+
 ### Copy files to Images foler
-Get-ChildItem -Path "C:\Users\hello\OneDrive\Desktop\*" -Include *.jpg,*.png -Recurse | Copy-Item -Destination "C:\Users\hello\OneDrive\Desktop\Images" 
+Get-ChildItem -Path "$Location_Desktop\*" -Include *.jpg,*.png -Recurse | Copy-Item -Destination "$Location_Desktop\Images" | Out-Null
+
 ## Create Shortcuts folder 
 New-Item "./Shortcuts" -ItemType Directory
-Get-ChildItem -Path "C:\Users\hello\OneDrive\Desktop\*" -Include *.lnk -Recurse | Copy-Item -Destination "C:\Users\hello\OneDrive\Desktop\Shortcuts" 
+
+Get-ChildItem -Path "$Location_Desktop\*" -Include *.lnk -Recurse | Copy-Item -Destination "$Location_Desktop\Shortcuts" | Out-Null
+
 ## Delete files
-Get-ChildItem -Path C:\Users\hello\OneDrive\Desktop -File | Remove-Item -Verbose
+Get-ChildItem -Path $Location_Desktop -File | Remove-Item -Verbose | Out-Null
 
 
 
-#Get-ChildItem -LiteralPath "C:\Users\hello\OneDrive\Desktop" -Filter '*.lnk' -File
+#Get-ChildItem -LiteralPath "$Location_Desktop" -Filter '*.lnk' -File
 
-ls
-write-Host "Arrange desktop successfully" -ForegroundColor Yellow
-
-Sleep 100
+write-Host "Arrange desktop successfully" -ForegroundColor Yellow;
