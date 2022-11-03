@@ -25,6 +25,11 @@ New-Item "./Shortcuts" -ItemType Directory
 
 Get-ChildItem -Path "$Location_Desktop\*" -Include *.lnk -Recurse | Copy-Item -Destination "$Location_Desktop\Shortcuts" | Out-Null
 
+## Create Media folder 
+New-Item "./Media" -ItemType Directory
+
+Get-ChildItem -Path "$Location_Desktop\*" -Include *.mp4, *.mov, *.mp3, *.wav -Recurse | Copy-Item -Destination "$Location_Desktop\Media" | Out-Null
+
 ## Delete files
 Get-ChildItem -Path $Location_Desktop -File | Remove-Item -Verbose | Out-Null
 
