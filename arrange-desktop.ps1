@@ -13,7 +13,7 @@ Set-Location -Path "$Location_Desktop"
 New-Item "./Documents" -ItemType Directory
 
 ## Copy files to Documents folder
-Get-ChildItem -Path "$Location_Desktop\*" -Include *.pdf,*.docx,*.txt -Recurse | Copy-Item -Destination "$Location_Desktop\Documents" | Out-Null
+Get-ChildItem -Path "$Location_Desktop\*" -Include *.pdf,*.docx,*.txt, *.pptx -Recurse | Copy-Item -Destination "$Location_Desktop\Documents" | Out-Null
 ## Create Images folder
 New-Item "./Images" -ItemType Directory
 
